@@ -7,7 +7,7 @@ const Notifications = () => {
     return (
         <div className="Notifications">
             <p>Here is the list of notifications</p>
-            <ul style={{ marginLeft: '5em' }}>
+            <ul style={{ marginLeft: '5em', marginTop: '1em'}}>
                 <li data-priority="default">New course available</li>
                 <li data-priority="urgent">New resume available</li>
                 <li data-priority="urgent" dangerouslySetInnerHTML={{ __html: getLatestNotification() }} />
