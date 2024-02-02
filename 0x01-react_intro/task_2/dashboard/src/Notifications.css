@@ -1,6 +1,15 @@
 .Notifications {
-    font-size: var(--font-size-medium);
+    font-size: var(--font-size-small);
     padding: 1em 2em;
-    border: 5px solid var(--color-primary);
-    border-radius: 1em;
+    border: 2px dashed var(--color-primary);
+    border-radius: 2px;
+    position: relative;
+}
+
+li[data-priority="default"] {
+    color: var(--color-info);
+}
+
+li[data-priority="urgent"] {
+    color: var(--color-danger);
 }

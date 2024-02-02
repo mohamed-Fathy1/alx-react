@@ -11,6 +11,8 @@
     --font-size-xlarge: 2.4rem;
 
     --color-primary: #E0354B;
+    --color-info: #3A7CA5;
+    --color-danger: #D7263D;
 }
 
 body {
