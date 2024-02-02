@@ -1,0 +1,6 @@
+.Notifications {
+    font-size: var(--font-size-medium);
+    padding: 1em 2em;
+    border: 5px solid var(--color-primary);
+    border-radius: 1em;
+}
