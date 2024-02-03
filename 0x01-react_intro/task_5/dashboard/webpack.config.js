@@ -55,7 +55,8 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({
-            template: './public/index.html',
+            template: './dist/index.html',
         }),
     ],
+    devtool: 'inline-source-map',
 };
