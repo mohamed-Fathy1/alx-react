@@ -1,0 +1,71 @@
+* , *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-size-small: 1.2rem;
+    --font-size-medium: 1.6rem;
+    --font-size-large: 1.8rem;
+    --font-size-xlarge: 2.4rem;
+
+    --color-primary: #E0354B;
+    --color-info: #3A7CA5;
+    --color-danger: #D7263D;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+}
+
+h1 {
+    font-size: var(--font-size-large);
+    color: var(--color-primary);
+}
+
+.App-header {
+    display: flex;
+    align-items: center;
+}
+
+
+.App-header img {
+    height: 12rem;
+}
+
+.App-header h1 {
+    margin-left: 1rem;
+}
+
+.App-body {
+    padding: calc(2rem + 2vw);
+    border-block: 4px solid var(--color-primary);
+    height: 60vh;
+}
+
+.App-footer {
+    padding: calc(1rem + 2vw);
+    text-align: center;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .App-header {
+        flex-direction: column;
+    }
+
+    .App-header img {
+        height: 8rem;
+    }
+
+    .App-header h1 {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .App-body {
+        height: 40vh;
+    }
+}

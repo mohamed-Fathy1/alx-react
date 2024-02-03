@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --mode development --open",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --mode development --config config/webpack.config.js",
+    "build": "webpack --mode productioni --config ./config/webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.23.9",
+    "@babel/plugin-transform-runtime": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-react": "^7.23.3",
     "babel-loader": "^9.1.3",
@@ -26,6 +27,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "inline-source-map": "^0.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
