@@ -42,14 +42,18 @@ module.exports = {
                 type: 'asset/resource',
             },
             {
-                test: /\.(png|jpg|jpeg|gif|svg)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'images',
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                // type: 'asset/resource',
+                use: [
+                    "file-loader",
+                    {
+                        loader: "image-webpack-loader",
+                        options: {
+                            bypassOnDebug: true, // webpack@1.x
+                            disable: true, // webpack@2.x and newer
+                        },
                     },
-                },
+                ],
             },
         ],
     },
