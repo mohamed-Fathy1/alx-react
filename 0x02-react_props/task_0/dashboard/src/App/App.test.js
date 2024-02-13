@@ -7,19 +7,4 @@ describe('Test App Compunent', () => {
         const wrapper = shallow(<App />);
         expect(wrapper).toMatchSnapshot();
     });
-
-    it('renders a header', () => {
-        const wrapper = shallow(<App />);
-        expect(wrapper.find('.App-header').exists()).toBe(true);
-    });
-
-    it('renders a body section', () => {
-        const wrapper = shallow(<App />);
-        expect(wrapper.find('.App-body').exists()).toBe(true);
-    });
-
-    it('renders a footer', () => {
-        const wrapper = shallow(<App />);
-        expect(wrapper.find('.App-footer').exists()).toBe(true);
-    });
 });

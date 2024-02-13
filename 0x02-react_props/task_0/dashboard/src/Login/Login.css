@@ -1,0 +1,11 @@
+.App-body {
+    padding: calc(2rem + 2vw);
+    border-block: 4px solid var(--color-primary);
+    height: 60vh;
+}
+
+@media (max-width: 768px) {
+    .App-body {
+        height: 40vh;
+    }
+}
