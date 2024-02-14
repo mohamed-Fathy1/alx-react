@@ -7,4 +7,16 @@ describe('Test App Compunent', () => {
         const wrapper = shallow(<App />);
         expect(wrapper).toMatchSnapshot();
     });
+
+    it('does not render CourseList component', () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.find('CourseList')).toHaveLength(0);
+    });
+
+    it('renders CourseList component', () => {
+        const wrapper = shallow(<App isLoggedIn={true} />);
+        expect(wrapper.find('Login')).toHaveLength(0);
+        expect(wrapper.find('CourseList')).toHaveLength(1);
+
+    });
 });
