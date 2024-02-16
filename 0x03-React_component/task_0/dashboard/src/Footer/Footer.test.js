@@ -27,7 +27,7 @@ describe('Test Footer component', () => {
 
     it('renders the correct year', () => {
         const wrapper = shallow(<Footer />);
-        expect(wrapper.find('p').text()).toContain(getFullYear());
+        expect(wrapper.find('p').text()).toContain(getFullYear().toString());
     });
 
     it('renders the correct text', () => {

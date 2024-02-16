@@ -19,7 +19,7 @@ describe('<NotificationItem />', () => {
     });
 
     it('renders with correct html', () => {
-        const wrapper = shallow(<NotificationItem html={{ __html: '<u>test</u>' }} />);
+        const wrapper = shallow(<NotificationItem html='<u>test</u>' />);
         expect(wrapper.html()).toEqual('<li data-notification-type="urgent"><u>test</u></li>');
     });
 });

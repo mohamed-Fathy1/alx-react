@@ -14,11 +14,22 @@ const Notifications = ({ displayDrawer, listNotifications }) => {
             </div>
             {displayDrawer && (
                 <div className="Notifications">
-                    <p>Here is the list of notifications</p>
-                    <ul style={{ marginLeft: '2em', marginTop: '.5em' }}>
-                        {listNotifications.length !== 0 ? listNotifications.map((notification) => (
-                            <NotificationItem key={notification.id} type={notification.type} value={notification.value} html={notification.html} />
-                        )) : <NotificationItem value="No new notification for now" />}
+                    <ul style={{ marginTop: '.5em' }}>
+                        {listNotifications.length !== 0 ? (
+                            <>
+                                <p>Here is the list of notifications</p>
+
+                                {listNotifications.map((notification) => (
+                                    <NotificationItem
+                                        key={notification.id}
+                                        type={notification.type}
+                                        value={notification.value}
+                                        html={notification.html} />
+                                ))
+                                }
+                            </>
+                        ) : <NotificationItem value="No new notification for now" />
+                        }
                     </ul>
 
                     <button style={{ position: 'absolute', right: '2em', top: '1em', background: 'none', border: 'none' }}

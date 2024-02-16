@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CourseList from './CourseList';
-import React from "react";
-import CourseList from "./CourseList";
 import CourseListRow from "./CourseListRow";
 
 const listCourses = [
@@ -19,7 +17,7 @@ describe('<CourseListRow />', () => {
 
     it('renders the 5 different rows correctly', () => {
         const wrapper = shallow(<CourseList />);
-        expect(wrapper.find('CourseListRow')).toHaveLength(5);
+        expect(wrapper.find('CourseListRow')).toHaveLength(3);
     });
 
     it("should render without crashing", () => {

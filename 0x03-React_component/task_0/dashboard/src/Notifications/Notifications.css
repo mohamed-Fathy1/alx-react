@@ -22,6 +22,10 @@
     margin-top: .6rem;
 }
 
+li {
+    margin-left: 2em;
+}
+
 li[data-notification-type="default"] {
     color: var(--color-info);
 }

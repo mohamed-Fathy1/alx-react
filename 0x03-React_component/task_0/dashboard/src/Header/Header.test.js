@@ -30,6 +30,6 @@ describe("Header", () => {
 
     it("should render the Header component with img tag and alt", () => {
         const wrapper = shallow(<Header />);
-        expect(wrapper.find("img").prop("alt")).toBe("Helberton School");
+        expect(wrapper.find("img").prop("alt")).toBe("Holberton Logo");
     });
 });
