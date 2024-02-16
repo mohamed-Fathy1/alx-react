@@ -1,0 +1,35 @@
+.notification-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 1000;
+}
+
+.menuItem {
+    font-weight: bold;
+}
+
+.Notifications {
+    font-size: var(--font-size-small);
+    padding: 1em 2em;
+    border: 2px dashed var(--color-primary);
+    border-radius: 2px;
+    position: relative;
+    margin-top: .6rem;
+}
+
+li {
+    margin-left: 2em;
+}
+
+li[data-notification-type="default"] {
+    color: var(--color-info);
+}
+
+li[data-notification-type="urgent"] {
+    color: var(--color-danger);
+}
