@@ -4,9 +4,11 @@ import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import Notifications from '../Notifications/Notifications';
 import CourseList from '../CourseList/CourseList';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import { getLatestNotification } from "../utils/utils";
 import "./App.css";
 import PropTypes from 'prop-types';
+import BodySection from '../BodySection/BodySection';
 
 class App extends React.Component {
 
@@ -38,7 +40,7 @@ class App extends React.Component {
         const listNotifications = [
             { id: 1, type: 'default', value: 'New course available' },
             { id: 2, type: 'urgent', value: 'New resume available' },
-            { id: 3, type: 'urgent', html: getLatestNotification()}
+            { id: 3, type: 'urgent', html: getLatestNotification() }
         ];
 
         return (
@@ -46,8 +48,19 @@ class App extends React.Component {
                 <Notifications displayDrawer={true} listNotifications={listNotifications} />
                 <div className="App">
                     <Header />
-                    {this.props.isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login />}
-                    <Footer />
+                    {this.props.isLoggedIn ? (
+                        <BodySectionWithMarginBottom title="Course list">
+                            <CourseList listCourses={listCourses} />
+                        </BodySectionWithMarginBottom>
+                    ) : (
+                        <BodySectionWithMarginBottom title="Log in to continue">
+                            <Login />
+                        </BodySectionWithMarginBottom>
+                    )}
+                    <BodySection title="News from the School">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et neque ex. Suspendisse potenti. Suspendisse tempus mi dui, auctor laoreet erat luctus nec. Nunc nec tincidunt arcu. Phasellus at ligula ut mauris convallis pharetra. Proin euismod erat metus, ut pretium mi eleifend at. Integer sit amet laoreet est. Nunc et odio et nibh bibendum tempus. </p>
+                    </BodySection>
+                    < Footer />
                 </div>
             </>
         );
