@@ -1,6 +1,7 @@
 import React from "react";
 import "./Notifications.css";
 import PropTypes from "prop-types";
+import withLogging from "../HOC/WithLogging";
 
 class NotificationItem extends React.PureComponent {
   render() {
@@ -32,4 +33,4 @@ NotificationItem.defaultProps = {
   markAsRead: () => undefined,
 };
 
-export default NotificationItem;
+export default withLogging(NotificationItem);
