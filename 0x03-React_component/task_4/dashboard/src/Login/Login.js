@@ -1,7 +1,8 @@
 import React from 'react';
 import './Login.css';
+import withLogging from '../HOC/WithLogging';
 
-export default function Login() {
+function Login() {
     return (
         <>
             <div className="App-body">
@@ -17,3 +18,5 @@ export default function Login() {
         </>
     );
 }
+
+export default withLogging(Login)
