@@ -1,10 +1,17 @@
 import React from "react";
 import BodySection from "./BodySection";
-import "./BodySectionWithMarginBottom.css";
+import { StyleSheet, css } from "aphrodite";
+
+
+const styles = StyleSheet.create({
+    bodySectionWithMargin: {
+        marginBottom: '40px'
+    }
+})
 
 const BodySectionWithMarginBottom = (props) => {
     return (
-        <div className="bodySectionWithMargin">
+        <div className={css(styles.bodySectionWithMargin)}>
             <BodySection {...props} />
         </div>
     );
