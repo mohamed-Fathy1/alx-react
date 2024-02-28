@@ -10,6 +10,11 @@ const listCourses = [
 ];
 
 describe('<CourseListRow />', () => {
+
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
     it('renders CourseList component without crashing', () => {
         const wrapper = shallow(<CourseList />);
         expect(wrapper.exists());

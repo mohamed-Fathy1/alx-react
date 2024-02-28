@@ -3,6 +3,11 @@ import BodySection from "./BodySection";
 import { shallow } from "enzyme";
 
 describe("BodySection tests", () => {
+
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
     it("should render correctly", () => {
         const wrapper = shallow(
             <BodySection title="test title">

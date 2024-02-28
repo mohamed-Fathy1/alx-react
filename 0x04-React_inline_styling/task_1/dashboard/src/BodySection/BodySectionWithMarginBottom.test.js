@@ -4,6 +4,11 @@ import BodySectionWithMarginBottom from "./BodySectionWithMarginBottom";
 import BodySection from "./BodySection";
 
 describe("BodySectionWithMarginBottom tests", () => {
+
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
     it("should apply margin bottom to child component", () => {
         const wrapper = shallow(<BodySectionWithMarginBottom title="test title" />);
 

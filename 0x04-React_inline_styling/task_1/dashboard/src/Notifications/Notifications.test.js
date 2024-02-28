@@ -11,6 +11,11 @@ const listNotifications = [
 ];
 
 describe("Test Notifications Component", () => {
+
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
     it("should render Notifications component", () => {
         const wrapper = shallow(<Notifications />);
         expect(wrapper.exists()).toBe(true);

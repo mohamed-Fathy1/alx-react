@@ -11,6 +11,11 @@ import Notifications from "../Notifications/Notifications";
 import CourseList from "../CourseList/CourseList";
 
 describe('Test App Compunent', () => {
+
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
     it('renders without crashing', () => {
         const wrapper = shallow(<App />);
         expect(wrapper).toMatchSnapshot();
