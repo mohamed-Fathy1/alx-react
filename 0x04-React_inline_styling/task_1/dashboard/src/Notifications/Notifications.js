@@ -5,7 +5,32 @@ import NotificationItem from "./NotificationItem";
 import PropTypes from "prop-types";
 import NotificationItemShape from "./NotificationItemShape";
 import withLogging from "../HOC/WithLogging";
+import { StyleSheet, css } from 'aphrodite';
 
+const styles = StyleSheet.create({
+  notificationContainer: {
+    position: 'fixed',
+    top: '1rem',
+    right: '1rem',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    zIndex: 1000,
+  },
+  menuItem: {
+    fontWeight: 'bold',
+  },
+  notifications: {
+    fontSize: 'var(--font-size-small)', // Assuming --font-size-small is defined elsewhere
+    padding: '1em 2em',
+    border: '2px dashed var(--color-primary)', // Assuming --color-primary is defined elsewhere
+    borderRadius: '2px',
+    position: 'relative',
+    marginTop: '.6rem',
+    backgroundColor: '#FFFFFF',
+  },
+});
 
 class Notifications extends React.Component {
 
@@ -24,12 +49,12 @@ class Notifications extends React.Component {
 
     render() {
         return (
-            <div className="notification-container">
-                <div className="menuItem">
+            <div className={css(styles.notificationContainer)}>
+                <div className={css(styles.menuItem)}>
                     Your notifications
                 </div>
                 {this.props.displayDrawer && (
-                    <div className="Notifications">
+                    <div className={css(styles.notifications)}>
                         <ul style={{ marginTop: '.5em' }}>
                             {this.props.listNotifications.length !== 0 ? (
                                 <>
