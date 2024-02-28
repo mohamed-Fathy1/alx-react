@@ -3,6 +3,11 @@ import { shallow } from "enzyme";
 import Header from "./Header";
 
 describe("Header", () => {
+
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
     it("should render the Header component", () => {
         const wrapper = shallow(<Header />);
         expect(wrapper).toBeDefined();

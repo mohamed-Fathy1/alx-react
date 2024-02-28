@@ -7,7 +7,16 @@ import NotificationItemShape from "./NotificationItemShape";
 import withLogging from "../HOC/WithLogging";
 import { StyleSheet, css } from 'aphrodite';
 
-const styles = StyleSheet.create({
+const notificationStyles  = StyleSheet.create({
+  notifications: {
+    fontSize: 'var(--font-size-small)',
+    padding: '1em 2em',
+    border: '2px dashed var(--color-primary)',
+    borderRadius: '2px',
+    position: 'relative',
+    marginTop: '.6rem',
+    backgroundColor: '#FFFFFF',
+  },
   notificationContainer: {
     position: 'fixed',
     top: '1rem',
@@ -20,15 +29,6 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     fontWeight: 'bold',
-  },
-  notifications: {
-    fontSize: 'var(--font-size-small)', // Assuming --font-size-small is defined elsewhere
-    padding: '1em 2em',
-    border: '2px dashed var(--color-primary)', // Assuming --color-primary is defined elsewhere
-    borderRadius: '2px',
-    position: 'relative',
-    marginTop: '.6rem',
-    backgroundColor: '#FFFFFF',
   },
 });
 
@@ -49,12 +49,12 @@ class Notifications extends React.Component {
 
     render() {
         return (
-            <div className={css(styles.notificationContainer)}>
-                <div className={css(styles.menuItem)}>
+            <div className={css(notificationStyles .notificationContainer)}>
+                <div className={css(notificationStyles .menuItem)}>
                     Your notifications
                 </div>
                 {this.props.displayDrawer && (
-                    <div className={css(styles.notifications)}>
+                    <div className={css(notificationStyles .notifications)}>
                         <ul style={{ marginTop: '.5em' }}>
                             {this.props.listNotifications.length !== 0 ? (
                                 <>

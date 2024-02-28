@@ -12,7 +12,13 @@ import './uni.css'
 import { StyleSheet, css } from 'aphrodite';
 
 
-const styles = StyleSheet.create({
+const footerStyles = StyleSheet.create({
+    footer: {
+        paddingBlock: '1rem',
+    }
+});
+
+const bodyStyles = StyleSheet.create({
     root: {
         '--font-size-small': '1.2rem',
         '--font-size-medium': '1.6rem',
@@ -63,7 +69,7 @@ class App extends React.Component {
         ];
 
         return (
-            <div className={css(styles.root, styles.body)}>
+            <div className={css(bodyStyles.root, bodyStyles.body)}>
                 <Notifications displayDrawer={true} listNotifications={listNotifications} />
                 <div className="App">
                     <Header />
@@ -79,7 +85,9 @@ class App extends React.Component {
                     <BodySection title="News from the School">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et neque ex. Suspendisse potenti. Suspendisse tempus mi dui, auctor laoreet erat luctus nec. Nunc nec tincidunt arcu. Phasellus at ligula ut mauris convallis pharetra. Proin euismod erat metus, ut pretium mi eleifend at. Integer sit amet laoreet est. Nunc et odio et nibh bibendum tempus. </p>
                     </BodySection>
-                    < Footer />
+                    <div className={css(footerStyles.footer)}>
+                        < Footer />
+                    </div>
                 </div>
             </div>
         );
