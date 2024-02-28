@@ -1,0 +1,32 @@
+.App-body {
+    padding: calc(2rem + 2vw);
+    min-height: 60vh;
+}
+
+table {
+    width: 100%;
+    max-width: 60rem;
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-top: 2rem;
+    border: 1px solid gray;
+
+}
+
+tr:has(:nth-child(2)) {
+    text-align: left;
+}
+
+th, td {
+    padding: 5px;
+}
+
+th {
+    border-block: 1px solid gray;
+}
+
+@media (max-width: 768px) {
+    .App-body {
+        height: 40vh;
+    }
+}
