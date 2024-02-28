@@ -6,9 +6,28 @@ import Notifications from '../Notifications/Notifications';
 import CourseList from '../CourseList/CourseList';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import { getLatestNotification } from "../utils/utils";
-import "./App.css";
 import PropTypes from 'prop-types';
 import BodySection from '../BodySection/BodySection';
+import './uni.css'
+import { StyleSheet, css } from 'aphrodite';
+
+
+const styles = StyleSheet.create({
+    root: {
+        '--font-size-small': '1.2rem',
+        '--font-size-medium': '1.6rem',
+        '--font-size-large': '1.8rem',
+        '--font-size-xlarge': '2.4rem',
+
+        '--color-primary': '#E0354B',
+        '--color-info': '#3A7CA5',
+        '--color-danger': '#D7263D'
+    },
+    body: {
+        fontFamily: '"Roboto", sans-serif',
+        minHeight: '100vh'
+    }
+})
 
 class App extends React.Component {
 
@@ -44,7 +63,7 @@ class App extends React.Component {
         ];
 
         return (
-            <>
+            <div className={css(styles.root, styles.body)}>
                 <Notifications displayDrawer={true} listNotifications={listNotifications} />
                 <div className="App">
                     <Header />
@@ -62,7 +81,7 @@ class App extends React.Component {
                     </BodySection>
                     < Footer />
                 </div>
-            </>
+            </div>
         );
     }
 }
