@@ -3,6 +3,11 @@ import Login from "./Login";
 import { shallow } from "enzyme";
 
 describe("Login", () => {
+
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
     it("should render Login component", () => {
         const wrapper = shallow(<Login />);
         expect(wrapper.exists()).toBe(true);
