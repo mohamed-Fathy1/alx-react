@@ -6,29 +6,47 @@ import NotificationItemShape from "./NotificationItemShape";
 import withLogging from "../HOC/WithLogging";
 import { StyleSheet, css } from 'aphrodite';
 
-const notificationStyles  = StyleSheet.create({
-  notifications: {
-    fontSize: 'var(--font-size-small)',
-    padding: '1em 2em',
-    border: '2px dashed var(--color-primary)',
-    borderRadius: '2px',
-    position: 'relative',
-    marginTop: '.6rem',
-    backgroundColor: '#FFFFFF',
-  },
-  notificationContainer: {
-    position: 'fixed',
-    top: '1rem',
-    right: '1rem',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    zIndex: 1000,
-  },
-  menuItem: {
-    fontWeight: 'bold',
-  },
+const notificationStyles = StyleSheet.create({
+    notifications: {
+        fontSize: 'var(--font-size-small)',
+        padding: '1em 2em',
+        border: '2px dashed var(--color-primary)',
+        borderRadius: '2px',
+        position: 'relative',
+        marginTop: '.6rem',
+        backgroundColor: '#FFFFFF',
+        '@media (max-width: 900px)': {
+            width: '100%',
+            height: '100%',
+            marginTop: 0,
+            padding: 0,
+            fontSize: '20px',
+            border: 0
+        }
+    },
+    notificationContainer: {
+        position: 'fixed',
+        top: '1rem',
+        right: '1rem',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        zIndex: 1000,
+        '@media (max-width: 900px)': {
+            height: '100%',
+            top: 0,
+            right: 0,
+        }
+    },
+    menuItem: {
+        fontWeight: 'bold',
+    },
+    disable: {
+        '@media (max-width: 900px)': {
+            display: 'none'
+        }
+    }
 });
 
 class Notifications extends React.Component {
@@ -48,12 +66,12 @@ class Notifications extends React.Component {
 
     render() {
         return (
-            <div className={css(notificationStyles .notificationContainer)}>
-                <div className={css(notificationStyles .menuItem)}>
+            <div className={css(notificationStyles.notificationContainer)}>
+                <div className={css(notificationStyles.menuItem, this.props.displayDrawer && notificationStyles.disable)}>
                     Your notifications
                 </div>
                 {this.props.displayDrawer && (
-                    <div className={css(notificationStyles .notifications)}>
+                    <div className={css(notificationStyles.notifications)}>
                         <ul style={{ marginTop: '.5em' }}>
                             {this.props.listNotifications.length !== 0 ? (
                                 <>
