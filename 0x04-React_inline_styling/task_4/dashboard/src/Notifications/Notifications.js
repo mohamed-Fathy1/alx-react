@@ -6,6 +6,19 @@ import NotificationItemShape from "./NotificationItemShape";
 import withLogging from "../HOC/WithLogging";
 import { StyleSheet, css } from 'aphrodite';
 
+
+const opacityAnim = {
+    '0%': { opacity: 0.5 },
+    '100%': { opacity: 1 }
+};
+
+const bounceAnim = {
+    '0%': { transform: 'translateY(0px)' },
+    '33%': { transform: 'translateY(-5px)' },
+    '66%': { transform: 'translateY(5px)' },
+    '100%': { transform: 'translateY(0px)' },
+};
+
 const notificationStyles = StyleSheet.create({
     notifications: {
         fontSize: 'var(--font-size-small)',
@@ -41,6 +54,12 @@ const notificationStyles = StyleSheet.create({
     },
     menuItem: {
         fontWeight: 'bold',
+        ':hover': {
+            cursor: 'pointer',
+            animationName: [opacityAnim, bounceAnim],
+            animationDuration: '1s, 0.5s',
+            animationIterationCount: '3'
+        }
     },
     disable: {
         '@media (max-width: 900px)': {
