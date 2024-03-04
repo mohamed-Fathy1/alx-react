@@ -68,20 +68,10 @@ const notificationStyles = StyleSheet.create({
     }
 });
 
-class Notifications extends React.Component {
+class Notifications extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.markAsRead = this.markAsRead.bind(this);
-    }
-
-    shouldComponentUpdate(nextProps) {
-        return nextProps.listNotifications.length > this.props.listNotifications.length ||
-            this.props.displayDrawer != nextProps.displayDrawer;
-    }
-
-    markAsRead(id) {
-        console.log(`Notification ${id} has been marked as read`);
     }
 
     render() {
@@ -106,7 +96,7 @@ class Notifications extends React.Component {
                                             type={notification.type}
                                             value={notification.value}
                                             html={notification.html}
-                                            markAsRead={() => this.markAsRead(notification.id)}
+                                            markAsRead={() => this.props.markAsRead(notification.id)}
                                         />
                                     ))
                                     }
@@ -135,14 +125,17 @@ Notifications.propTypes = {
     displayDrawer: PropTypes.bool,
     listNotifications: PropTypes.arrayOf(NotificationItemShape),
     handleHideDrawer: () => { },
-    handleDisplayDrawer: () => { }
+    handleDisplayDrawer: () => { },
+    markNotificationAsRead: () => { }
 };
 
 Notifications.defaultProps = {
     displayDrawer: false,
     listNotifications: [],
     handleHideDrawer: PropTypes.func,
-    handleDisplayDrawer: PropTypes.func
+    handleDisplayDrawer: PropTypes.func,
+    markNotificationAsRead: PropTypes.func
+
 };
 
 export default withLogging(Notifications);
