@@ -36,11 +36,12 @@ const bodyStyles = StyleSheet.create({
 })
 
 class App extends React.Component {
-
     constructor(props) {
         super(props);
+
+        this.state = { displayDrawer: false };
+
         this.handleKeydown = this.handleKeydown.bind(this);
-        this.state = { displayDrawer: false }
         this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
         this.handleHideDrawer = this.handleHideDrawer.bind(this);
     }
@@ -54,19 +55,19 @@ class App extends React.Component {
     }
 
     handleDisplayDrawer() {
-        this.setState({
-            displayDrawer: true
-        })
+        this.setState({ displayDrawer: true });
     }
 
     handleHideDrawer() {
-        this.setState({
-            displayDrawer: false
-        })
+        this.setState({ displayDrawer: false });
     }
 
     componentDidMount() {
         window.addEventListener('keydown', this.handleKeydown);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeydown);
     }
 
     render() {
