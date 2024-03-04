@@ -26,21 +26,74 @@ const styles = StyleSheet.create({
 
 })
 
-function Login() {
-    return (
-        <>
-            <div className={css(styles.AppBody)}>
-                <p>Login to access the full dashboard</p>
-                <form action="" className={css(styles.form)}>
-                    <label htmlFor="email">Email: </label>
-                    <input type="email" id="email" name="email" />
-                    <label htmlFor="password">Password: </label>
-                    <input type="password" id="password" name="password" />
-                    <button type="submit">OK</button>
-                </form>
-            </div>
-        </>
-    );
+class Login extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoggedIn: false,
+            email: '',
+            password: '',
+            enableSubmit: false
+        }
+
+        this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
+        this.handleChangeEmail = this.handleChangeEmail.bind(this)
+        this.handleChangePassword = this.handleChangePassword.bind(this)
+    }
+
+    handleLoginSubmit(e) {
+        e.preventDefault()
+        this.setState({
+            isLoggedIn: true
+        })
+    }
+
+    handleChangeEmail(e) {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    handleChangePassword(e) {
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    componentDidUpdate() {
+        if (this.state.email && this.state.password) {
+            if (!this.state.enableSubmit) {
+                this.setState({
+                    enableSubmit: true
+                })
+            }
+        } else {
+            if (this.state.enableSubmit) {
+                this.setState({
+                    enableSubmit: false
+                })
+            }
+        }
+    }
+
+    render() {
+        const { email, password, enableSubmit } = this.state
+        return (
+            <>
+                <div className={css(styles.AppBody)}>
+                    <p>Login to access the full dashboard</p>
+                    <form action="" onSubmit={this.handleLoginSubmit} className={css(styles.form)}>
+                        <label htmlFor="email">Email: </label>
+                        <input type="email" id="email" name="email" value={email} onChange={this.handleChangeEmail} />
+                        <label htmlFor="password">Password: </label>
+                        <input type="password" id="password" name="password" value={password} onChange={this.handleChangePassword} />
+                        <input type="submit" value="Ok" disabled={!enableSubmit} />
+                    </form>
+                </div>
+            </>
+        );
+    }
 }
 
 export default withLogging(Login)
