@@ -85,23 +85,22 @@ class Notifications extends React.Component {
     }
 
     render() {
-        const { listNotifications, displayDrawer, handleDisplayDrawer, handleHideDrawer } = this.props
         return (
             <div className={css(notificationStyles.notificationContainer)}>
-                {!displayDrawer ? (<div
-                    className={css(notificationStyles.menuItem, displayDrawer && notificationStyles.disable)}
-                    onClick={handleDisplayDrawer}
+                {!this.props.displayDrawer ? (<div
+                    className={css(notificationStyles.menuItem, this.props.displayDrawer && notificationStyles.disable)}
+                    onClick={this.props.handleDisplayDrawer}
                 >
                     Your notifications
                 </div>
                 ) : (
                     <div className={css(notificationStyles.notifications)}>
                         <ul style={{ marginTop: '.5em' }}>
-                            {listNotifications.length !== 0 ? (
+                            {this.props.listNotifications.length !== 0 ? (
                                 <>
                                     <p>Here is the list of notifications</p>
 
-                                    {listNotifications.map((notification) => (
+                                    {this.props.listNotifications.map((notification) => (
                                         <NotificationItem
                                             key={notification.id}
                                             type={notification.type}
@@ -120,7 +119,7 @@ class Notifications extends React.Component {
                             aria-label="Close"
                             onClick={() => {
                                 console.log('Close button has been clicked')
-                                handleHideDrawer()
+                                this.props.handleHideDrawer()
                             }}
                         >
                             <img src={closeIcon} alt="Close" width="20" height="20" />
