@@ -130,4 +130,44 @@ describe("Testing App Component's State />", () => {
         wrapper.instance().handleHideDrawer();
         expect(wrapper.state('displayDrawer')).toBe(false);
     });
+
+    it(`Tests that the logIn function updates user's state correctly`, () => {
+        wrapper = mount(
+            <AppContext.Provider value={{ user, logOut }}>
+                <App />
+            </AppContext.Provider>
+        );
+
+        const myUser = {
+            email: 'testy@gmail.com',
+            password: 'testy',
+            isLoggedIn: true,
+        }
+
+        expect(wrapper.state().user).toEqual(user);
+        const instance = wrapper.instance();
+        instance.logIn(myUser.email, myUser.password);
+        expect(wrapper.state().user).toEqual(myUser);
+        wrapper.unmount();
+    })
+
+    it(`Tests that the logOut function updates user's state correctly`, () => {
+        wrapper = mount(
+            <AppContext.Provider value={{ user, logOut }}>
+                <App />
+            </AppContext.Provider>
+        );
+
+        const myUser = {
+            email: 'testy@gmail.com',
+            password: 'testy',
+            isLoggedIn: true,
+        }
+
+        expect(wrapper.state().user).toEqual(user);
+        const instance = wrapper.instance();
+        instance.logOut();
+        expect(wrapper.state().user).toEqual(user);
+        wrapper.unmount();
+    })
 });

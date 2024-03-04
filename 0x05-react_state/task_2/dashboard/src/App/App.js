@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import BodySection from '../BodySection/BodySection';
 import './uni.css'
 import { StyleSheet, css } from 'aphrodite';
-import { logOut, user } from './AppContext';
+import { AppContext, logOut, user } from './AppContext';
 
 
 const footerStyles = StyleSheet.create({
@@ -40,22 +40,24 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
+        this.logOut = this.logOut.bind(this)
         this.state = {
             displayDrawer: false,
             user: user,
-            logOut: logOut
+            logOut: this.logOut
         };
 
         this.handleKeydown = this.handleKeydown.bind(this);
         this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
         this.handleHideDrawer = this.handleHideDrawer.bind(this);
+        this.logIn = this.logIn.bind(this)
     }
 
     handleKeydown(event) {
         if (event.ctrlKey && event.key === 'h') {
             event.preventDefault();
             alert('Logging you out');
-            this.props.logOut();
+            this.logOut();
         }
     }
 
@@ -77,7 +79,7 @@ class App extends React.Component {
         })
     }
 
-    logOut(){
+    logOut() {
         this.setState({
             user
         })
@@ -105,33 +107,40 @@ class App extends React.Component {
             { id: 3, type: 'urgent', html: getLatestNotification() }
         ];
 
+        const { user } = this.state
+
         return (
-            <div className={css(bodyStyles.root, bodyStyles.body)}>
-                <Notifications
-                    listNotifications={listNotifications}
-                    displayDrawer={this.state.displayDrawer}
-                    handleDisplayDrawer={this.handleDisplayDrawer}
-                    handleHideDrawer={this.handleHideDrawer}
-                />
-                <div className="App">
-                    <Header />
-                    {this.props.isLoggedIn ? (
-                        <BodySectionWithMarginBottom title="Course list">
-                            <CourseList listCourses={listCourses} />
-                        </BodySectionWithMarginBottom>
-                    ) : (
-                        <BodySectionWithMarginBottom title="Log in to continue">
-                            <Login />
-                        </BodySectionWithMarginBottom>
-                    )}
-                    <BodySection title="News from the School">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et neque ex. Suspendisse potenti. Suspendisse tempus mi dui, auctor laoreet erat luctus nec. Nunc nec tincidunt arcu. Phasellus at ligula ut mauris convallis pharetra. Proin euismod erat metus, ut pretium mi eleifend at. Integer sit amet laoreet est. Nunc et odio et nibh bibendum tempus. </p>
-                    </BodySection>
-                    <div className={css(footerStyles.footer)}>
-                        < Footer />
+            <AppContext.Provider value={{
+                user: this.state.user,
+                logOut: this.state.logOut
+            }}>
+                <div className={css(bodyStyles.root, bodyStyles.body)}>
+                    <Notifications
+                        listNotifications={listNotifications}
+                        displayDrawer={this.state.displayDrawer}
+                        handleDisplayDrawer={this.handleDisplayDrawer}
+                        handleHideDrawer={this.handleHideDrawer}
+                    />
+                    <div className="App">
+                        <Header />
+                        {user.isLoggedIn ? (
+                            <BodySectionWithMarginBottom title="Course list">
+                                <CourseList listCourses={listCourses} />
+                            </BodySectionWithMarginBottom>
+                        ) : (
+                            <BodySectionWithMarginBottom title="Log in to continue">
+                                <Login logIn={this.logIn} />
+                            </BodySectionWithMarginBottom>
+                        )}
+                        <BodySection title="News from the School">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et neque ex. Suspendisse potenti. Suspendisse tempus mi dui, auctor laoreet erat luctus nec. Nunc nec tincidunt arcu. Phasellus at ligula ut mauris convallis pharetra. Proin euismod erat metus, ut pretium mi eleifend at. Integer sit amet laoreet est. Nunc et odio et nibh bibendum tempus. </p>
+                        </BodySection>
+                        <div className={css(footerStyles.footer)}>
+                            < Footer />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </AppContext.Provider>
         );
     }
 }
