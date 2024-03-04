@@ -108,3 +108,26 @@ describe("When ctrl + h is pressed", () => {
     });
     document.alert.mockClear();
 });
+
+describe("Testing App Component's State />", () => {
+    let wrapper;
+
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+        wrapper = shallow(<App />);
+    });
+
+    it('check if default value of displayDrawer in state is false', () => {
+        expect(wrapper.state('displayDrawer')).toBe(false);
+    });
+
+    it('Verify that after calling handleDisplayDrawer, the state displayDrawer should now be true', () => {
+        wrapper.instance().handleDisplayDrawer();
+        expect(wrapper.state('displayDrawer')).toBe(true);
+    });
+
+    it('verify that after calling handleHideDrawer, the state displayDrawer is updated to be false', () => {
+        wrapper.instance().handleHideDrawer();
+        expect(wrapper.state('displayDrawer')).toBe(false);
+    });
+});

@@ -40,6 +40,9 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.handleKeydown = this.handleKeydown.bind(this);
+        this.state = {
+            displayDrawer: false
+        }
     }
 
     handleKeydown(event) {
@@ -48,6 +51,18 @@ class App extends React.Component {
             alert('Logging you out');
             this.props.logOut();
         }
+    }
+
+    handleDisplayDrawer() {
+        this.setState({
+            displayDrawer: true
+        })
+    }
+
+    handleHideDrawer() {
+        this.setState({
+            displayDrawer: false
+        })
     }
 
     componentDidMount() {
@@ -70,7 +85,12 @@ class App extends React.Component {
 
         return (
             <div className={css(bodyStyles.root, bodyStyles.body)}>
-                <Notifications displayDrawer={true} listNotifications={listNotifications} />
+                <Notifications
+                    listNotifications={listNotifications}
+                    displayDrawer={this.state.displayDrawer}
+                    handleDisplayDrawer={this.handleDisplayDrawer}
+                    handleHideDrawer={this.handleHideDrawer}
+                />
                 <div className="App">
                     <Header />
                     {this.props.isLoggedIn ? (
