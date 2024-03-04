@@ -43,6 +43,8 @@ class App extends React.Component {
         this.state = {
             displayDrawer: false
         }
+        this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+        this.handleHideDrawer = this.handleHideDrawer.bind(this);
     }
 
     handleKeydown(event) {
@@ -83,6 +85,7 @@ class App extends React.Component {
             { id: 3, type: 'urgent', html: getLatestNotification() }
         ];
 
+        console.log(this.state.displayDrawer)
         return (
             <div className={css(bodyStyles.root, bodyStyles.body)}>
                 <Notifications

@@ -76,7 +76,8 @@ class Notifications extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        return nextProps.listNotifications.length > this.props.listNotifications.length;
+        return nextProps.listNotifications.length > this.props.listNotifications.length ||
+            this.props.displayDrawer != nextProps.displayDrawer;
     }
 
     markAsRead(id) {
@@ -84,19 +85,23 @@ class Notifications extends React.Component {
     }
 
     render() {
+        const { listNotifications, displayDrawer, handleDisplayDrawer, handleHideDrawer } = this.props
         return (
             <div className={css(notificationStyles.notificationContainer)}>
-                <div className={css(notificationStyles.menuItem, this.props.displayDrawer && notificationStyles.disable)}>
+                {!displayDrawer ? (<div
+                    className={css(notificationStyles.menuItem, displayDrawer && notificationStyles.disable)}
+                    onClick={handleDisplayDrawer}
+                >
                     Your notifications
                 </div>
-                {this.props.displayDrawer && (
+                ) : (
                     <div className={css(notificationStyles.notifications)}>
                         <ul style={{ marginTop: '.5em' }}>
-                            {this.props.listNotifications.length !== 0 ? (
+                            {listNotifications.length !== 0 ? (
                                 <>
                                     <p>Here is the list of notifications</p>
 
-                                    {this.props.listNotifications.map((notification) => (
+                                    {listNotifications.map((notification) => (
                                         <NotificationItem
                                             key={notification.id}
                                             type={notification.type}
@@ -113,7 +118,10 @@ class Notifications extends React.Component {
 
                         <button style={{ position: 'absolute', right: '2em', top: '1em', background: 'none', border: 'none' }}
                             aria-label="Close"
-                            onClick={() => console.log('Close button has been clicked')}
+                            onClick={() => {
+                                console.log('Close button has been clicked')
+                                handleHideDrawer()
+                            }}
                         >
                             <img src={closeIcon} alt="Close" width="20" height="20" />
                         </button>
@@ -126,12 +134,16 @@ class Notifications extends React.Component {
 
 Notifications.propTypes = {
     displayDrawer: PropTypes.bool,
-    listNotifications: PropTypes.arrayOf(NotificationItemShape)
+    listNotifications: PropTypes.arrayOf(NotificationItemShape),
+    handleHideDrawer: () => { },
+    handleDisplayDrawer: () => { }
 };
 
 Notifications.defaultProps = {
     displayDrawer: false,
-    listNotifications: []
+    listNotifications: [],
+    handleHideDrawer: PropTypes.func,
+    handleDisplayDrawer: PropTypes.func
 };
 
 export default withLogging(Notifications);
