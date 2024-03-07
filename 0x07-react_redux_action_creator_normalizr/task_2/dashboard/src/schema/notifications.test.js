@@ -1,3 +1,4 @@
+import { normalize } from "normalizr";
 import { getAllNotificationsByUser, normalizedData } from "./notifications"
 
 describe('getAllNotificationsByUser', () => {
@@ -41,7 +42,7 @@ describe('getAllNotificationsByUser', () => {
             '5debd764de9fa684468cdc0b',
         ];
 
-        const result = normalized.result;
+        const result = normalizedData.result;
 
         expect(result).toEqual(expect.arrayContaining(data));
     });
@@ -55,7 +56,7 @@ describe('getAllNotificationsByUser', () => {
             picture: 'http://placehold.it/32x32',
         };
 
-        const user = normalized.entities.users['5debd764a7c57c7839d722e9'];
+        const user = normalizedData.entities.users['5debd764a7c57c7839d722e9'];
 
         expect(user).toEqual(data);
     });
@@ -69,7 +70,7 @@ describe('getAllNotificationsByUser', () => {
         };
 
         const message =
-            normalized.entities.messages['efb6c485-00f7-4fdf-97cc-5e12d14d6c41'];
+            normalizedData.entities.messages['efb6c485-00f7-4fdf-97cc-5e12d14d6c41'];
 
         expect(message).toEqual(data);
     });
@@ -82,7 +83,7 @@ describe('getAllNotificationsByUser', () => {
         };
 
         const notification =
-            normalized.entities.notifications['5debd7642e815cd350407777'];
+            normalizedData.entities.notifications['5debd7642e815cd350407777'];
 
         expect(notification).toEqual(data);
     });
