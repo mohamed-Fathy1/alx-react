@@ -7,9 +7,13 @@ export const markAsAread = (index) => {
   };
 }
 
+export const boundMarkAsAread = (index) => dispatch(markAsAread(index));
+
 export const setNotificationFilter = (filter) => {
   return {
     type: SET_TYPE_FILTER,
     filter,
   };
 }
+
+export const boundSetNotificationFilter = (filter) => dispatch(setNotificationFilter(filter));
